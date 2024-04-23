@@ -194,9 +194,23 @@ private fun ProfileInfoItem(
  */
 @Composable
 private fun AppDrawerBody(closeDrawerAction: () -> Unit) {
-  //TODO add your code here
+  Column {
+    ScreenNavigationButton(
+      icon = Icons.Filled.AccountBox,
+      label = stringResource(R.string.my_profile),
+      onClickAction = { closeDrawerAction() }
+    )
+    ScreenNavigationButton(
+      icon = Icons.Filled.Home,
+      label = stringResource(R.string.saved),
+      onClickAction = { closeDrawerAction() }
+    )
+  }
 }
-
+@Composable @Preview
+fun AppDrawerBodyPreview() {
+  AppDrawerBody {}
+}
 /**
  * Представляет компонент в панели приложений, который пользователь может использовать для смены экрана.
  */

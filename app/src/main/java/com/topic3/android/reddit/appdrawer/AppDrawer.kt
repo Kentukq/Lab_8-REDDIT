@@ -103,6 +103,48 @@ private fun ProfileInfoItem(
   modifier: Modifier
 ) {
   //TODO add your code here
+  val colors = MaterialTheme.colors
+
+  ConstraintLayout(modifier = modifier) {
+    val (iconRef, amountRef, titleRef) = createRefs()
+    val itemModifier = Modifier
+
+    Icon(
+      imageVector = iconAsset,
+      contentDescription = stringResource(id = textResourceId),
+      tint = Color.Blue,
+      modifier = itemModifier
+        .constrainAs(iconRef) {
+          centerVerticallyTo(parent)
+          start.linkTo(parent.start)
+        }
+        .padding(start = 16.dp)
+    )
+    Text(
+      text = stringResource(amountResourceId),
+      color = colors.primaryVariant,
+      fontSize = 10.sp,
+      modifier = itemModifier
+        .padding(start = 8.dp)
+        .constrainAs(amountRef) {
+          top.linkTo(iconRef.top)
+          start.linkTo(iconRef.end)
+          bottom.linkTo(titleRef.top)
+        }
+    )
+    Text(
+      text = stringResource(textResourceId),
+      color = Color.Gray,
+      fontSize = 10.sp,
+      modifier = itemModifier
+        .padding(start = 8.dp)
+        .constrainAs(titleRef) {
+          top.linkTo(amountRef.bottom)
+          start.linkTo(iconRef.end)
+          bottom.linkTo(iconRef.bottom)
+        }
+    )
+  }
 }
 
 /**
